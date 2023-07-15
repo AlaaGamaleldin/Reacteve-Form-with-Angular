@@ -1,0 +1,83 @@
+<div class="container">
+  <div class="title">Registration</div>
+  <div class="content">
+    <form action="#" [formGroup]="reactiveForm" (ngSubmit)="onSubmit()">
+      <div class="user-details" formGroupName="signUpForm">
+        <div class="input-box">
+          <span class="details">Full Name</span>
+          <input type="text" placeholder="Enter your name" formControlName="fullName">
+          <div>
+            <small *ngIf="reactiveForm.get('signUpForm.fullName').errors?.['required']">the first name is required fild</small>
+            <small *ngIf="reactiveForm.get('signUpForm.fullName').errors?.['noSpaceAllowed']">first name can not contain a space</small>
+          </div>
+        </div>
+        <div class="input-box">
+          <span class="details">Username</span>
+          <input type="text" placeholder="Enter your username" formControlName="userName">
+          <div>
+            <small *ngIf="reactiveForm.get('signUpForm.userName').errors?.['required']">the user name is required fild</small>
+            <small *ngIf="reactiveForm.get('signUpForm.userName').errors?.['noSpaceAllowed']">user name can not contain a space</small>
+          </div>
+        </div>
+        <div class="input-box">
+          <span class="details">Email</span>
+          <input type="text" placeholder="Enter your email" formControlName="email">
+          <div>
+            <small *ngIf="reactiveForm.get('signUpForm.email').errors?.['required']">the email is required fild</small>
+            <small *ngIf="reactiveForm.get('signUpForm.email').errors?.['noSpaceAllowed']">email can not contain a space</small>
+          </div>
+          <!--<div>
+            <span style=" color: red;" 
+            *ngIf="!reactiveForm.get('signUpForm.email').valid && reactiveForm.get('signUpForm.email').touched">the email you entered is not valid email</span>
+          </div>-->
+        </div>
+        <div class="input-box">
+          <span class="details">Phone Number</span>
+          <input type="text" placeholder="Enter your number" formControlName="phone">
+          <div>
+            <small *ngIf="reactiveForm.get('signUpForm.phone').errors?.['required']">the phone is required fild</small>
+            <small *ngIf="reactiveForm.get('signUpForm.phone').errors?.['noSpaceAllowed']">phone can not contain a space</small>
+          </div>
+          
+        </div>
+        <div class="input-box">
+          <span class="details">Password</span>
+          <input type="text" placeholder="Enter your password" formControlName="password">
+        </div>
+        <div class="input-box">
+          <span class="details">Confirm Password</span>
+          <input type="text" placeholder="Confirm your password">
+        </div>
+      </div>
+      <div class="gender-details">
+        <input type="radio" name="gender" id="dot-1" formControlName="gender">
+        <input type="radio" name="gender" id="dot-2" formControlName="gender">
+        <input type="radio" name="gender" id="dot-3" formControlName="gender">
+        <span class="gender-title">Gender</span>
+        <div class="category">
+          <label for="dot-1">
+          <span class="dot one"></span>
+          <span class="gender">Male</span>
+        </label>
+        <label for="dot-2">
+          <span class="dot two"></span>
+          <span class="gender">Female</span>
+        </label>
+        <label for="dot-3">
+          <span class="dot three"></span>
+          <span class="gender">Prefer not to say</span>
+          </label>
+        </div>
+      </div>
+      <div formArrayName="skills">
+        <ng-container *ngFor="let skill of reactiveForm.get('skills')['controls'];index as i">
+          <input type="text" placeholder="add skill..." formControlName="{{i}}">
+        </ng-container>
+        <button (click)="addSkill()">add skill</button>
+      </div>
+      <div class="button">
+        <input type="submit" value="Register">
+      </div>
+    </form>
+  </div>
+</div>
